@@ -67,8 +67,8 @@ function SignUpForm() {
   }
 
   return (
-    <Card className="border-0">
-      <Card.Header className="flex items-center">
+    <Card className="border-0 bg-transparent hover:shadow-none">
+      <Card.Header>
         <Card.Title>Selamat Datang di PickBlue 👋</Card.Title>
         <Card.Description>
           Mulai registrasi untuk memulai explorasi di PickBlue.
@@ -77,9 +77,9 @@ function SignUpForm() {
 
       <Separator />
 
-      <Card.Content className="">
+      <Card.Content>
         <form
-          className="flex flex-col items-start gap-4 w-[400px]"
+          className="flex flex-col items-start gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col items-start gap-1 w-full">
@@ -138,7 +138,7 @@ function SignUpForm() {
         </form>
       </Card.Content>
 
-      <Card.Footer className="flex items-center justify-center gap-1 pt-0">
+      <Card.Footer>
         <P>Sudah punya akun?</P>
         <NextLink className="text-sm" href={"/sign-in"}>
           Masuk

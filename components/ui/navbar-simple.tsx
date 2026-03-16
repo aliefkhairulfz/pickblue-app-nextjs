@@ -14,10 +14,10 @@ export default function NavbarSimple() {
         {/* Menu */}
         <div className="flex items-center gap-8 text-sm text-foreground/60">
           <Link
-            href="/browse"
+            href="/explore"
             className="transition-colors hover:text-foreground"
           >
-            Browse
+            Explore
           </Link>
 
           <Link

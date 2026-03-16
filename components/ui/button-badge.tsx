@@ -1,42 +1,37 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/utils/cn";
 
-const badge = cva(
-  "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium [&>svg]:size-3.5",
+const buttonBadge = cva(
+  "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all [&>svg]:size-3.5",
   {
     variants: {
       variant: {
-        primary: "bg-primary/15 text-foreground",
-        secondary: "bg-secondary/15 text-secondary",
-        accent: "bg-accent/15 text-accent",
-        neutral: "bg-neutral/20 text-neutral-content",
-        success: "bg-success/15 text-success",
-        warning: "bg-warning/15 text-warning",
-        error: "bg-error/15 text-error",
+        default:
+          "border border-border text-foreground/70 hover:border-primary/40 hover:text-primary",
+
+        active:
+          "border border-primary text-primary bg-primary/15 shadow-lg shadow-primary/10",
       },
     },
+
     defaultVariants: {
-      variant: "primary",
+      variant: "default",
     },
   },
 );
 
-type ButtonBadgeProps = ComponentPropsWithoutRef<"span"> &
-  VariantProps<typeof badge> & {
-    icon?: ReactNode;
-  };
+type ButtonBadgeProps = ComponentPropsWithoutRef<"button"> &
+  VariantProps<typeof buttonBadge>;
 
 export default function ButtonBadge({
   className,
   variant,
-  icon,
   children,
   ...props
 }: ButtonBadgeProps) {
   return (
-    <button {...props} className={cn(badge({ variant }), className)}>
-      {icon}
+    <button {...props} className={cn(buttonBadge({ variant }), className)}>
       {children}
     </button>
   );

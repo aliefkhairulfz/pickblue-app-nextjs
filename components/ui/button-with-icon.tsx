@@ -4,7 +4,12 @@ import { ArrowRight } from "lucide-react";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 
 const button = cva(
-  ["relative font-semibold border rounded-md transition-colors"],
+  [
+    "relative inline-flex items-center justify-center",
+    "font-semibold border rounded-md",
+    "transition-all",
+    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+  ],
   {
     variants: {
       intent: {
@@ -12,44 +17,55 @@ const button = cva(
           "bg-primary",
           "text-primary-content",
           "border-transparent",
-          "shadow-xl",
+          "shadow-lg",
           "shadow-primary/20",
         ],
-        secondary: ["bg-secondary", "text-secondary-content", "border-border"],
+
+        secondary: [
+          "bg-secondary",
+          "text-secondary-content",
+          "border-transparent",
+        ],
+
+        accent: ["bg-accent", "text-accent-content", "border-transparent"],
+
         outline: ["bg-transparent", "text-foreground", "border-border"],
+
         ghost: ["bg-transparent", "text-foreground", "border-transparent"],
       },
+
       size: {
         small: ["text-sm", "py-1", "px-2"],
         medium: ["text-base", "py-2", "px-4", "pr-9"],
+        large: ["text-lg", "py-3", "px-6", "pr-10"],
       },
+
       disabled: {
         false: null,
         true: ["opacity-50", "cursor-not-allowed"],
       },
     },
+
     compoundVariants: [
       {
-        intent: "primary",
+        intent: ["primary", "secondary", "accent"],
         disabled: false,
-        className: "hover:opacity-90",
+        className: "hover:brightness-110 active:brightness-95",
       },
-      {
-        intent: "secondary",
-        disabled: false,
-        className: "hover:bg-neutral hover:text-neutral-content",
-      },
+
       {
         intent: "outline",
         disabled: false,
         className: "hover:bg-neutral hover:text-neutral-content",
       },
+
       {
         intent: "ghost",
         disabled: false,
         className: "hover:bg-neutral/50",
       },
     ],
+
     defaultVariants: {
       intent: "primary",
       size: "medium",
@@ -72,10 +88,13 @@ function ButtonWithIcon({
   ...props
 }: ButtonWithIconProps) {
   return (
-    <button {...props} className={cn(button({ intent, size }), className)}>
+    <button
+      {...props}
+      className={cn(button({ intent, size }), "group", className)}
+    >
       {children}
 
-      <span className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center size-4 opacity-80 [&>svg]:size-4">
+      <span className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center size-4 opacity-80 transition-transform group-hover:translate-x-0.5 [&>svg]:size-4">
         {icon}
       </span>
     </button>

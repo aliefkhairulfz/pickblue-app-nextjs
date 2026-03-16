@@ -7,7 +7,7 @@ import InputWithIcon from "@/components/ui/input-with-icon";
 import Label from "@/components/ui/label";
 import NextLink from "@/components/ui/nextlink-with-icon";
 import Separator from "@/components/ui/separator";
-import { P } from "@/components/ui/typography";
+import { H3, P } from "@/components/ui/typography";
 import { fetchClient } from "@/utils/http-request/fetch-client";
 import {
   FailsResponseData,
@@ -76,9 +76,11 @@ function SignInForm() {
     }));
   }
   return (
-    <Card className="border-0">
-      <Card.Header className="flex items-center">
-        <Card.Title>Selamat Datang 👋</Card.Title>
+    <Card className="border-0 bg-transparent hover:shadow-none">
+      <Card.Header>
+        <Card.Title>
+          <H3>Selamat Datang 👋</H3>
+        </Card.Title>
         <Card.Description>
           Masuk ke akun kamu untuk memulai explorasi di PickBlue.
         </Card.Description>
@@ -86,9 +88,9 @@ function SignInForm() {
 
       <Separator />
 
-      <Card.Content className="">
+      <Card.Content>
         <form
-          className="flex flex-col items-start gap-4 w-[400px]"
+          className="flex flex-col items-start gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col items-start gap-1 w-full">
@@ -136,7 +138,7 @@ function SignInForm() {
         </form>
       </Card.Content>
 
-      <Card.Footer className="flex items-center justify-center gap-1 pt-0">
+      <Card.Footer>
         <P>Belum punya akun?</P>
         <NextLink className="text-sm" href={"/sign-up"}>
           Buat akun

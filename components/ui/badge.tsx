@@ -3,21 +3,20 @@ import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/utils/cn";
 
 const badge = cva(
-  "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium border-[0.1px] shadow-xl shadow-primary/10 [&>svg]:size-3.5",
+  "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-all [&>svg]:size-3.5",
   {
     variants: {
       variant: {
-        primary: "bg-primary/15 text-primary",
-        secondary: "bg-secondary/15 text-secondary",
-        accent: "bg-accent/15 text-accent",
-        neutral: "bg-neutral/20 text-neutral-content",
-        success: "bg-success/15 text-success",
-        warning: "bg-warning/15 text-warning",
-        error: "bg-error/15 text-error",
+        default: "bg-neutral text-neutral-content",
+        primary: "bg-primary text-primary-content",
+        secondary: "bg-secondary text-secondary-content",
+        accent: "bg-accent text-accent-content",
+        outline: "border border-border text-foreground",
+        soft: "bg-neutral/40 text-neutral-content",
       },
     },
     defaultVariants: {
-      variant: "primary",
+      variant: "default",
     },
   },
 );

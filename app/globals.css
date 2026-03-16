@@ -63,4 +63,8 @@
   button {
     @apply cursor-pointer;
   }
+
+  .ringdebug {
+    @apply ring-1 ring-red-500;
+  }
 }
