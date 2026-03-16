@@ -13,6 +13,12 @@ import { ALargeSmall, KeyRound, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { SignupFormData, signupSchema } from "../schema/schema";
+import { fetchClient } from "@/utils/http-request/fetch-client";
+import {
+  FailsResponseData,
+  SuccessResponseData,
+} from "@/utils/http-request/response-type";
+import { useState } from "react";
 
 function SignUpForm() {
   const {
@@ -28,8 +34,36 @@ function SignUpForm() {
     },
   });
 
-  function onSubmit(args: SignupFormData) {
-    console.log(args);
+  const [err, setErr] = useState<{ error: boolean | null; email: string }>({
+    error: null,
+    email: "",
+  });
+
+  async function onSubmit(args: SignupFormData) {
+    const body = {
+      ...args,
+      provider_id: "credentials",
+    };
+
+    const { data, error } = await fetchClient<
+      SignupFormData,
+      SuccessResponseData,
+      FailsResponseData
+    >({
+      path: "/auth/sign-up",
+      method: "POST",
+      body: body,
+    });
+
+    if (error) {
+      return setErr((old) => ({ ...old, error: true, email: "" }));
+    }
+
+    setErr((old) => ({
+      ...old,
+      error: false,
+      email: data?.data.email as string,
+    }));
   }
 
   return (
@@ -89,6 +123,14 @@ function SignUpForm() {
             />
             {errors.password && <Error>{errors.password.message}</Error>}
           </div>
+
+          {err.error !== null && !err.error && (
+            <div className="flex items-center justify-center w-full">
+              <P className="text-center text-sm">
+                email verifikasi telah dikirim ke {err.email}
+              </P>
+            </div>
+          )}
 
           <div className="w-full [&>button]:w-full">
             <Button>Registrasi Sekarang</Button>

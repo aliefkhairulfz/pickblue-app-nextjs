@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Luna Artistry",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400",
+    "followers": 12400
+  },
+  {
+    "id": 2,
+    "name": "Neon Brush",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400",
+    "followers": 8900
+  },
+  {
+    "id": 3,
+    "name": "Pixel Dream",
+    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=400",
+    "followers": 15600
+  },
+  {
+    "id": 4,
+    "name": "Aurora Studio",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400",
+    "followers": 10200
+  },
+  {
+    "id": 5,
+    "name": "Ink Vision",
+    "avatar": "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=400",
+    "followers": 7300
+  }
+]

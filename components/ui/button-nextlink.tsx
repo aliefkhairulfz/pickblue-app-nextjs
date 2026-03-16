@@ -1,6 +1,6 @@
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 
 const button = cva(
@@ -21,7 +21,7 @@ const button = cva(
       },
       size: {
         small: ["text-sm", "py-1", "px-2"],
-        medium: ["text-base", "py-2", "px-4", "pr-9"],
+        medium: ["text-base", "py-2", "px-4"],
       },
       disabled: {
         false: null,
@@ -58,28 +58,23 @@ const button = cva(
   },
 );
 
-export type ButtonWithIconProps = ComponentPropsWithoutRef<"button"> &
+export type ButtonNextlinkProps = ComponentPropsWithoutRef<typeof Link> &
   VariantProps<typeof button> & {
     icon?: ReactNode;
   };
 
-function ButtonWithIcon({
+function ButtonNextlink({
   children,
   intent,
   className,
   size,
-  icon = <ArrowRight strokeWidth={2.5} />,
   ...props
-}: ButtonWithIconProps) {
+}: ButtonNextlinkProps) {
   return (
-    <button {...props} className={cn(button({ intent, size }), className)}>
+    <Link {...props} className={cn(button({ intent, size }), className)}>
       {children}
-
-      <span className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center size-4 opacity-80 [&>svg]:size-4">
-        {icon}
-      </span>
-    </button>
+    </Link>
   );
 }
 
-export default ButtonWithIcon;
+export default ButtonNextlink;

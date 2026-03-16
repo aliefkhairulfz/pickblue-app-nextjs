@@ -3,8 +3,8 @@ import { ShoppingCart, User } from "lucide-react";
 
 export default function NavbarSimple() {
   return (
-    <nav className="w-full border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <nav className="fixed top-0 z-10 w-full border-b border-border bg-background/80 backdrop-blur-xl">
+      <div className="container mx-auto px-6 md:px-0 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-xl font-semibold tracking-tight">
           <span className="text-primary">Pick</span>

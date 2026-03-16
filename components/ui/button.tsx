@@ -7,7 +7,13 @@ const button = cva(
   {
     variants: {
       intent: {
-        primary: ["bg-primary", "text-primary-content", "border-transparent"],
+        primary: [
+          "bg-primary",
+          "text-primary-content",
+          "border-transparent",
+          "shadow-xl",
+          "shadow-primary/20",
+        ],
         secondary: ["bg-secondary", "text-secondary-content", "border-border"],
 
         outline: ["bg-transparent", "text-foreground", "border-border"],

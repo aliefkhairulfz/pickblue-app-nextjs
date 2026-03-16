@@ -7,7 +7,7 @@ function Root({ className, ...props }: ComponentPropsWithoutRef<"div">) {
     <div
       {...props}
       className={cn(
-        "w-full overflow-hidden rounded-xl border border-border bg-background/60 backdrop-blur hover:shadow-lg hover:shadow-primary/10 transition-all duration-800 hover:border-primary/50 cursor-pointer",
+        "w-full overflow-hidden rounded-xl border border-border bg-primary/5 backdrop-blur hover:shadow-lg hover:shadow-primary/20 transition-all duration-800 hover:border-primary/50 cursor-pointer group",
         className,
       )}
     />
@@ -21,7 +21,7 @@ function ImageWrapper({ src, alt }: { src: string; alt: string }) {
         src={src}
         alt={alt}
         fill
-        className="object-cover hover:scale-110 transition-all duration-600"
+        className="object-cover group-hover:scale-110 transition-all duration-600"
       />
     </div>
   );

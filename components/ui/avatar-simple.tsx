@@ -7,7 +7,7 @@ function Root({ className, ...props }: ComponentPropsWithoutRef<"div">) {
     <div
       {...props}
       className={cn(
-        "flex flex-col items-center gap-0.5 text-center cursor-pointer",
+        "flex flex-col items-center gap-0.5 text-center cursor-pointer group",
         className,
       )}
     />
@@ -34,7 +34,7 @@ function Avatar({
         src={src}
         alt={alt}
         fill
-        className="object-cover hover:scale-110 transition-all duration-800"
+        className="object-cover group-hover:scale-110 transition-all duration-800"
       />
     </div>
   );

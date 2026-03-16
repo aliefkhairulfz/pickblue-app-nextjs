@@ -54,6 +54,7 @@ export type InputProps = ComponentPropsWithoutRef<"input"> &
 function InputWithIcon({
   intent,
   size,
+  className,
   icon = <Search />,
   ...props
 }: InputProps) {
@@ -63,7 +64,7 @@ function InputWithIcon({
         {icon}
       </span>
 
-      <input className={cn(input({ intent, size }))} {...props} />
+      <input className={cn(input({ intent, size }), className)} {...props} />
     </div>
   );
 }
