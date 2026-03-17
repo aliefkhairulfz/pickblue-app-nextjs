@@ -1,0 +1,51 @@
+{
+  "AuthPage": {
+    "signinTitle": "Selamat Datang 👋",
+    "signinDescription": "Masuk ke akun kamu untuk mulai menjelajah PickBlue.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Masukkan email kamu",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Masukkan password kamu",
+    "passwordWrong": "Password kamu salah",
+    "signinButton": "Masuk",
+    "noAccount": "Belum punya akun?",
+    "createAccount": "Buat akun",
+
+    "signupTitle": "Selamat datang di PickBlue 👋",
+    "signupDescription": "Buat akun untuk mulai menjelajah PickBlue.",
+    "nameLabel": "Nama",
+    "namePlaceholder": "Masukkan nama kamu",
+    "signupButton": "Daftar Sekarang",
+    "alreadyAccount": "Sudah punya akun?",
+    "signinLink": "Masuk",
+    "verificationSent": "Email verifikasi telah dikirim ke {email}"
+  },
+
+  "HomePage": {
+    "badge": "Marketplace untuk kreator digital",
+
+    "hero": {
+      "title1": "Jual Karyamu.",
+      "title2": "Miliki Kreativitasmu.",
+      "description": "PickBlue membantu kreator membangun toko mereka sendiri dan menjual karya digital ke seluruh dunia.",
+      "startSelling": "Mulai jual karya",
+      "explore": "Jelajahi artwork"
+    },
+
+    "featured": {
+      "title": "Artwork Unggulan",
+      "viewAll": "Lihat semua"
+    },
+
+    "creators": {
+      "title": "Kreator Trending",
+      "followers": "pengikut"
+    },
+
+    "cta": {
+      "title": "Siap menjual?",
+      "description": "Buat toko kamu dalam hitungan menit dan mulai menghasilkan dari karya digital.",
+      "button": "Mulai gratis"
+    }
+  }
+}

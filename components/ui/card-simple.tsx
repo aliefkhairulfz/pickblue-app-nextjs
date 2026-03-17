@@ -41,9 +41,15 @@ function CardImage() {
   );
 }
 
-function CardHeader({ children }: { children: ReactNode }) {
+type CardHeader = ComponentPropsWithoutRef<"div">;
+
+function CardHeader({ children, className, ...props }: CardHeader) {
   return (
-    <div data-slot="card-header" className="relative py-4 px-4">
+    <div
+      {...props}
+      data-slot="card-header"
+      className={cn("relative py-4 px-4", className)}
+    >
       {children}
     </div>
   );
@@ -71,9 +77,15 @@ function CardAction({ children }: { children: ReactNode }) {
   );
 }
 
-function CardContent({ children }: { children: ReactNode }) {
+type CardContent = ComponentPropsWithoutRef<"div">;
+
+function CardContent({ children, className, ...props }: CardContent) {
   return (
-    <div data-slot="card-content" className="py-4 px-4">
+    <div
+      {...props}
+      data-slot="card-content"
+      className={cn("py-4 px-4", className)}
+    >
       {children}
     </div>
   );

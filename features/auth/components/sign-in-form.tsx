@@ -19,8 +19,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { SigninFormData, signinSchema } from "../schema/schema";
+import { useLocale, useTranslations } from "next-intl";
 
 function SignInForm() {
+  const t = useTranslations("AuthPage");
+  const locale = useLocale();
+
   const {
     register,
     handleSubmit,
@@ -60,7 +64,6 @@ function SignInForm() {
     });
 
     if (error) {
-      console.log("error message is:", error.message);
       return setErr((old) => ({
         ...old,
         error: true,
@@ -75,15 +78,14 @@ function SignInForm() {
       email: data?.data.email as string,
     }));
   }
+
   return (
     <Card className="border-0 bg-transparent hover:shadow-none">
       <Card.Header>
         <Card.Title>
-          <H3>Selamat Datang 👋</H3>
+          <H3>{t("signinTitle")}</H3>
         </Card.Title>
-        <Card.Description>
-          Masuk ke akun kamu untuk memulai explorasi di PickBlue.
-        </Card.Description>
+        <Card.Description>{t("signinDescription")}</Card.Description>
       </Card.Header>
 
       <Separator />
@@ -95,53 +97,57 @@ function SignInForm() {
         >
           <div className="flex flex-col items-start gap-1 w-full">
             <Label htmlFor="email" className="text-foreground/50">
-              Email
+              {t("emailLabel")}
             </Label>
+
             <InputWithIcon
               {...register("email")}
               id="email"
               type="email"
               icon={<Mail />}
-              placeholder="masukkan email kamu"
+              placeholder={t("emailPlaceholder")}
             />
+
             {errors.email && <Error>{errors.email.message}</Error>}
           </div>
 
           <div className="flex flex-col items-start gap-1 w-full">
             <Label htmlFor="password" className="text-foreground/50">
-              Password
+              {t("passwordLabel")}
             </Label>
+
             <InputWithIcon
               {...register("password")}
               id="password"
               type="text"
               icon={<KeyRound />}
-              placeholder="masukkan password kamu"
+              placeholder={t("passwordPlaceholder")}
             />
+
             {errors.password && <Error>{errors.password.message}</Error>}
           </div>
 
           {err.error !== null && err.error && (
             <div className="flex items-center justify-center w-full">
               <P className="text-center text-sm">
-                gagal{" "}
                 {err.errorMsg === "password_not_match"
-                  ? "password kamu salah"
+                  ? t("passwordWrong")
                   : err.errorMsg}
               </P>
             </div>
           )}
 
           <div className="w-full [&>button]:w-full">
-            <Button>Masuk</Button>
+            <Button>{t("signinButton")}</Button>
           </div>
         </form>
       </Card.Content>
 
       <Card.Footer>
-        <P>Belum punya akun?</P>
-        <NextLink className="text-sm" href={"/sign-up"}>
-          Buat akun
+        <P>{t("noAccount")}</P>
+
+        <NextLink className="text-sm" href={`/${locale}/sign-up`}>
+          {t("createAccount")}
         </NextLink>
       </Card.Footer>
     </Card>

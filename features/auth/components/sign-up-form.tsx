@@ -7,7 +7,7 @@ import InputWithIcon from "@/components/ui/input-with-icon";
 import Label from "@/components/ui/label";
 import NextLink from "@/components/ui/nextlink-with-icon";
 import Separator from "@/components/ui/separator";
-import { P } from "@/components/ui/typography";
+import { H3, P } from "@/components/ui/typography";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ALargeSmall, KeyRound, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -19,8 +19,12 @@ import {
   SuccessResponseData,
 } from "@/utils/http-request/response-type";
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 function SignUpForm() {
+  const t = useTranslations("AuthPage");
+  const locale = useLocale();
+
   const {
     register,
     handleSubmit,
@@ -69,10 +73,10 @@ function SignUpForm() {
   return (
     <Card className="border-0 bg-transparent hover:shadow-none">
       <Card.Header>
-        <Card.Title>Selamat Datang di PickBlue 👋</Card.Title>
-        <Card.Description>
-          Mulai registrasi untuk memulai explorasi di PickBlue.
-        </Card.Description>
+        <Card.Title>
+          <H3>{t("signupTitle")}</H3>
+        </Card.Title>
+        <Card.Description>{t("signupDescription")}</Card.Description>
       </Card.Header>
 
       <Separator />
@@ -84,64 +88,71 @@ function SignUpForm() {
         >
           <div className="flex flex-col items-start gap-1 w-full">
             <Label htmlFor="name" className="text-foreground/50">
-              Nama
+              {t("nameLabel")}
             </Label>
+
             <InputWithIcon
               {...register("name")}
               id="name"
               type="text"
               icon={<ALargeSmall />}
-              placeholder="masukkan nama kamu"
+              placeholder={t("namePlaceholder")}
             />
+
             {errors.name && <Error>{errors.name.message}</Error>}
           </div>
 
           <div className="flex flex-col items-start gap-1 w-full">
             <Label htmlFor="email" className="text-foreground/50">
-              Email
+              {t("emailLabel")}
             </Label>
+
             <InputWithIcon
               {...register("email")}
               id="email"
               type="email"
               icon={<Mail />}
-              placeholder="masukkan email kamu"
+              placeholder={t("emailPlaceholder")}
             />
+
             {errors.email && <Error>{errors.email.message}</Error>}
           </div>
 
           <div className="flex flex-col items-start gap-1 w-full">
             <Label htmlFor="password" className="text-foreground/50">
-              Password
+              {t("passwordLabel")}
             </Label>
+
             <InputWithIcon
               {...register("password")}
               id="password"
               type="text"
               icon={<KeyRound />}
-              placeholder="buat password kamu"
+              placeholder={t("passwordPlaceholder")}
             />
+
             {errors.password && <Error>{errors.password.message}</Error>}
           </div>
 
           {err.error !== null && !err.error && (
             <div className="flex items-center justify-center w-full">
               <P className="text-center text-sm">
-                email verifikasi telah dikirim ke {err.email}
+                {t("verificationSent", { email: err.email })}
               </P>
             </div>
           )}
 
           <div className="w-full [&>button]:w-full">
-            <Button>Registrasi Sekarang</Button>
+            <Button>{t("signupButton")}</Button>
           </div>
         </form>
       </Card.Content>
 
       <Card.Footer>
-        <P>Sudah punya akun?</P>
-        <NextLink className="text-sm" href={"/sign-in"}>
-          Masuk
+        <P>{t("alreadyAccount")}</P>
+
+        <NextLink className="text-sm" href={`/${locale}/sign-in`}>
+          {t("signinLink")}
         </NextLink>
       </Card.Footer>
     </Card>

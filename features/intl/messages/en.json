@@ -1,0 +1,51 @@
+{
+  "AuthPage": {
+    "signinTitle": "Welcome Back 👋",
+    "signinDescription": "Sign in to your account to start exploring PickBlue.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordWrong": "Your password is incorrect",
+    "signinButton": "Sign In",
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create one",
+
+    "signupTitle": "Welcome to PickBlue 👋",
+    "signupDescription": "Create your account to start exploring PickBlue.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter your name",
+    "signupButton": "Register Now",
+    "alreadyAccount": "Already have an account?",
+    "signinLink": "Sign In",
+    "verificationSent": "A verification email has been sent to {email}"
+  },
+
+  "HomePage": {
+    "badge": "The marketplace for digital creator",
+
+    "hero": {
+      "title1": "Sell Your Art.",
+      "title2": "Own Your Craft.",
+      "description": "PickBlue empowers creators to build their own store and sell digital artwork to a global audience.",
+      "startSelling": "Start selling your art",
+      "explore": "Explore artwork"
+    },
+
+    "featured": {
+      "title": "Featured Artworks",
+      "viewAll": "View all"
+    },
+
+    "creators": {
+      "title": "Trending Creators",
+      "followers": "followers"
+    },
+
+    "cta": {
+      "title": "Ready to sell?",
+      "description": "Create your store in minutes and start earning from your digital art today.",
+      "button": "Get started for free"
+    }
+  }
+}

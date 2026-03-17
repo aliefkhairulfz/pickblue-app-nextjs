@@ -11,22 +11,38 @@ import NextImage from "@/components/ui/next-image";
 import NextLink from "@/components/ui/nextlink-with-icon";
 import Separator from "@/components/ui/separator";
 import { H1, H3, H5, P } from "@/components/ui/typography";
+import { routing } from "@/i18n/routing";
 import creatorData from "@/public/creator-data.json";
 import productData from "@/public/product-data.json";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-export default function Home() {
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: "HomePage",
+  });
+
   return (
     <>
-      {/* HERO SECTION */}
+      {/* HERO */}
       <section className="w-full min-h-screen flex items-center justify-center px-6">
         <div className="flex flex-col items-center gap-4 text-center max-w-3xl">
           <Badge
-            variant={"outline"}
+            variant="outline"
             className="bg-primary/10 p-2 px-4 shadow-xl shadow-primary/10 border border-primary/50 text-primary"
             icon={<Sparkles />}
           >
-            The marketplace for digital creator
+            {t("badge")}
           </Badge>
 
           <div className="flex flex-col items-center leading-tight">
@@ -40,37 +56,35 @@ export default function Home() {
           </div>
 
           <P className="text-base md:text-lg text-foreground/50 max-w-xl">
-            PickBlue empowers creators to build their own store and sell digital
-            artwork to a global audience. No middleman, no hassle. Start selling
-            your art.
+            {t("hero.description")}
           </P>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
             <ButtonNextlinkWithIcon
               icon={<ArrowRight strokeWidth={3} />}
-              href={"/dashboard"}
+              href={`/${locale}/dashboard`}
             >
-              Start selling your art
+              {t("hero.startSelling")}
             </ButtonNextlinkWithIcon>
 
-            <ButtonNextlink intent={"outline"} href={"/explore"}>
-              Explore artwork
+            <ButtonNextlink intent="outline" href={`/${locale}/explore`}>
+              {t("hero.explore")}
             </ButtonNextlink>
           </div>
         </div>
       </section>
 
-      {/* PRODUCT SECTION */}
+      {/* PRODUCTS */}
       <section className="container mx-auto px-6 md:px-0 w-full min-h-[calc(100vh-300px)] flex flex-col gap-6">
         <div className="flex items-center justify-between">
-          <H3>Featured Artworks</H3>
+          <H3>{t("featured.title")}</H3>
 
           <NextLink
-            href={"/explore"}
+            href={`/${locale}/explore`}
             iconPosition="right"
-            icon={<ArrowRight size={20} strokeWidth={2.5} />}
+            icon={<ArrowRight size={18} strokeWidth={2.5} />}
           >
-            View all
+            {t("featured.viewAll")}
           </NextLink>
         </div>
 
@@ -110,9 +124,9 @@ export default function Home() {
 
       <Separator />
 
-      {/* CREATOR SECTION */}
+      {/* CREATORS */}
       <section className="container mx-auto px-6 md:px-0 w-full min-h-[calc(100vh-200px)] flex flex-col gap-8 items-center mt-12">
-        <H3>Trending Creators</H3>
+        <H3>{t("creators.title")}</H3>
 
         <div className="flex flex-wrap items-center justify-center gap-8 max-w-5xl">
           {creatorData.map((author, i) => (
@@ -122,7 +136,7 @@ export default function Home() {
               <CreatorCard.Name>{author.name}</CreatorCard.Name>
 
               <CreatorCard.Followers>
-                {author.followers} followers
+                {author.followers} {t("creators.followers")}
               </CreatorCard.Followers>
             </CreatorCard>
           ))}
@@ -131,17 +145,14 @@ export default function Home() {
         <Card className="py-4 px-6 bg-primary/5 mt-20 max-w-md">
           <Card.Header>
             <Card.Title>
-              <H3>Ready to sell?</H3>
+              <H3>{t("cta.title")}</H3>
             </Card.Title>
           </Card.Header>
 
-          <Card.Content>
-            Create your store in minutes and start earning from your digital art
-            today.
-          </Card.Content>
+          <Card.Content>{t("cta.description")}</Card.Content>
 
           <Card.Footer>
-            <Button>Get started for free</Button>
+            <Button>{t("cta.button")}</Button>
           </Card.Footer>
         </Card>
       </section>
