@@ -91,9 +91,15 @@ function CardContent({ children, className, ...props }: CardContent) {
   );
 }
 
-function CardFooter({ children }: { children: ReactNode }) {
+type CardFooter = ComponentPropsWithoutRef<"div">;
+
+function CardFooter({ children, ...props }: CardFooter) {
   return (
-    <div data-slot="card-footer" className="py-4 px-4">
+    <div
+      {...props}
+      data-slot="card-footer"
+      className={cn("py-4 px-4", props.className)}
+    >
       {children}
     </div>
   );

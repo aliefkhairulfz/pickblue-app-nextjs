@@ -7,7 +7,7 @@ import { H1, H2, P } from "@/components/ui/typography";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
-function ArtworkIdPage() {
+async function ArtworkIdPage() {
   return (
     <div className="container mx-auto mt-[64px] min-h-[calc(100vh-64px)] px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

@@ -27,6 +27,9 @@ const button = cva(
           "border-transparent",
         ],
 
+        active:
+          "border border-primary text-primary bg-primary/15 shadow-lg shadow-primary/10",
+
         accent: ["bg-accent", "text-accent-content", "border-transparent"],
 
         outline: ["bg-transparent", "text-foreground", "border-border"],

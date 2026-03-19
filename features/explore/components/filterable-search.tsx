@@ -1,11 +1,11 @@
 "use client";
 
-import ButtonBadge from "@/components/ui/button-badge";
+import ButtonNextlink from "@/components/ui/button-nextlink";
 import InputWithIcon from "@/components/ui/input-with-icon";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-const filterableCategories = [
+export const filterableCategories = [
   "All",
   "Illustration",
   "Photography",
@@ -13,9 +13,6 @@ const filterableCategories = [
   "Pixel Art",
   "Concept Art",
   "Abstract",
-  "1",
-  "2",
-  "3",
 ];
 
 type FilterableSearch = {
@@ -23,9 +20,8 @@ type FilterableSearch = {
 };
 
 function FilterableSearch() {
-  const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const { register, handleSubmit } = useForm<FilterableSearch>({
     defaultValues: {
@@ -33,15 +29,9 @@ function FilterableSearch() {
     },
   });
 
-  function handleCreateQueryParams(key: string, value: string) {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
-    return params.toString();
-  }
-
   function onSubmit(data: FilterableSearch) {
-    const params = handleCreateQueryParams("query", data.query);
-    router.push(pathname + "?" + params);
+    const { query } = data;
+    router.push(`/search?query=${query}`);
   }
 
   return (
@@ -58,22 +48,20 @@ function FilterableSearch() {
       {/** FILTERABLE BUTTON BADGE */}
       <div className="flex flex-wrap items-center gap-2">
         {filterableCategories.map((f, i) => {
-          const cat = f.split(" ").join("-").toLowerCase();
+          const category = f.split(" ").join("-").toLowerCase();
+          console.log({ category });
 
           return (
-            <ButtonBadge
-              className="p-1 px-4 rounded-full text-sm"
-              variant={
-                searchParams.get("category") === cat ? "active" : "default"
+            <ButtonNextlink
+              intent={
+                pathname.split("/").at(-1) === category ? "active" : "outline"
               }
+              href={`/explore/${category}`}
+              className="p-1 px-4 rounded-full text-sm"
               key={i}
-              onClick={() => {
-                const params = handleCreateQueryParams("category", cat);
-                router.push(pathname + "?" + params);
-              }}
             >
               {f}
-            </ButtonBadge>
+            </ButtonNextlink>
           );
         })}
       </div>

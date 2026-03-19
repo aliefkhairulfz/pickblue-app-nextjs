@@ -38,9 +38,15 @@ function CardImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function CardContent({ children }: { children: ReactNode }) {
+type CardContent = ComponentPropsWithoutRef<"div">;
+
+function CardContent({ children, ...props }: CardContent) {
   return (
-    <div data-slot="card-content" className="flex flex-col flex-1 gap-1">
+    <div
+      {...props}
+      data-slot="card-content"
+      className={cn("flex flex-col flex-1 gap-1", props.className)}
+    >
       {children}
     </div>
   );

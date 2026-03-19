@@ -11,15 +11,10 @@ import NextImage from "@/components/ui/next-image";
 import NextLink from "@/components/ui/nextlink-with-icon";
 import Separator from "@/components/ui/separator";
 import { H1, H3, H5, P } from "@/components/ui/typography";
-import { routing } from "@/i18n/routing";
 import creatorData from "@/public/creator-data.json";
 import productData from "@/public/product-data.json";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default async function Home({
   params,
@@ -67,7 +62,7 @@ export default async function Home({
               {t("hero.startSelling")}
             </ButtonNextlinkWithIcon>
 
-            <ButtonNextlink intent="outline" href={`/${locale}/explore`}>
+            <ButtonNextlink intent="outline" href={`/${locale}/explore/all`}>
               {t("hero.explore")}
             </ButtonNextlink>
           </div>
@@ -80,7 +75,7 @@ export default async function Home({
           <H3>{t("featured.title")}</H3>
 
           <NextLink
-            href={`/${locale}/explore`}
+            href={`/${locale}/explore/all`}
             iconPosition="right"
             icon={<ArrowRight size={18} strokeWidth={2.5} />}
           >

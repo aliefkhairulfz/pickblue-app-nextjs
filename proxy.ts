@@ -1,5 +1,5 @@
 import createMiddleware from "next-intl/middleware";
-import type { NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
@@ -12,24 +12,34 @@ export async function proxy(request: NextRequest) {
   // const segments = pathname.split("/");
   // const locale = segments[1];
 
-  // /** ROUTES */
+  // /** STATIC ROUTES */
   // const signIn = `/${locale}/sign-in`;
   // const signUp = `/${locale}/sign-up`;
   // const dashboard = `/${locale}/me`;
-  // const explore = `/${locale}/explore`;
-  // const artworkId = `/${locale}/artwork`;
   // const home = `/${locale}`;
 
-  // const pubRoutes = [signIn, signUp, home, explore, artworkId];
-  // const pivRoutes = [dashboard];
+  // /** DYNAMIC ROUTES */
+  // const explore = `/${locale}/explore`;
+  // const search = `/${locale}/search`;
+  // const artworkId = `/${locale}/artwork`;
 
-  // console.log("locale:", locale);
+  // const pubRoutes = [signIn, signUp, home];
+  // const pivRoutes = [dashboard];
 
   // /** CASE NO SESSION */
   // if (
   //   !session &&
-  //   pubRoutes.some((p) => p === pathname || pathname.startsWith(artworkId))
+  //   pubRoutes.some(
+  //     (p) =>
+  //       p === pathname ||
+  //       pathname.startsWith(explore) ||
+  //       pathname.startsWith(search) ||
+  //       pathname.startsWith(artworkId),
+  //   )
   // ) {
+  //   if (pathname === explore) {
+  //     return NextResponse.redirect(new URL(`${explore}/all`, request.url));
+  //   }
   //   return intlMiddleware(request);
   // }
 

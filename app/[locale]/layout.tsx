@@ -1,13 +1,11 @@
-import NavbarSimple from "@/components/ui/navbar-simple";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/utils/cn";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { Roboto_Slab } from "next/font/google";
-import "./globals.css";
-import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import PickblueFooter from "@/components/ui/pickblue-footer";
+import { Roboto_Slab } from "next/font/google";
+import { notFound } from "next/navigation";
+import "./globals.css";
 
 const robotoSlab = Roboto_Slab({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,13 +22,12 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<{
+type RootLayout = Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}>) {
+}>;
+
+export default async function RootLayout({ children, params }: RootLayout) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -41,15 +38,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={cn(robotoSlab.className, "antialiased")}>
-        <NextIntlClientProvider>
-          <header>
-            <NavbarSimple />
-          </header>
-          <main>{children}</main>
-          <footer className="px-6 md:px-0 mt-20 w-full border-t border-border">
-            <PickblueFooter />
-          </footer>
-        </NextIntlClientProvider>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

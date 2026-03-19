@@ -6,19 +6,13 @@ import productData from "@/public/product-data.json";
 import Link from "next/link";
 import FilterableSearch from "../components/filterable-search";
 
-async function ExplorePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category: string }>;
-}) {
-  const filter = (await searchParams).category;
-  const data = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${filter}`,
-  )
-    .then((response) => response.json())
-    .then((json) => json);
+type ExplorePage = {
+  params: Promise<{ category: string }>;
+};
 
-  console.log({ data });
+async function ExplorePage({ params }: ExplorePage) {
+  const { category } = await params;
+  console.log({ category });
 
   return (
     <section className="w-full flex flex-col gap-8 container mx-auto mt-28 px-6 md:px-0">
@@ -39,7 +33,7 @@ async function ExplorePage({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {productData.slice(0, 12).map((p, i) => (
-          <Link href={`artwork/${p.id}`} key={i}>
+          <Link href={`/artwork/${p.id}`} key={i}>
             <CardSimple className="w-full">
               <div className="aspect-video" />
               <div className="absolute inset-0 aspect-video">

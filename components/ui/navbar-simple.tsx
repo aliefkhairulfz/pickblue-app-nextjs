@@ -1,10 +1,7 @@
-import Link from "next/link";
 import { ShoppingCart, User } from "lucide-react";
-import { getLocale } from "next-intl/server";
+import Link from "next/link";
 
-export default async function NavbarSimple() {
-  const locale = await getLocale();
-
+export default async function NavbarSimple({ locale }: { locale: string }) {
   return (
     <nav className="fixed top-0 z-10 w-full border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto px-6 md:px-0 flex h-16 items-center justify-between">
@@ -20,7 +17,7 @@ export default async function NavbarSimple() {
         {/* Menu */}
         <div className="flex items-center gap-8 text-sm text-foreground/60">
           <Link
-            href={`/${locale}/explore`}
+            href={`/${locale}/explore/all`}
             className="transition-colors hover:text-foreground"
           >
             Explore
