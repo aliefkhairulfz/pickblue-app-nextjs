@@ -47,5 +47,36 @@
       "description": "Create your store in minutes and start earning from your digital art today.",
       "button": "Get started for free"
     }
+  },
+
+  "ArtworkIdPage": {
+    "variant": "Variant",
+    "size": "Size",
+    "color": "Color",
+    "addToCart": "Add to cart"
+  },
+
+  "ExplorePage": {
+    "browseArtworks": "Browse Artworks",
+    "discoverDigArt": "Discover digital art from talented creators"
+  },
+
+  "FilterableSearch": {
+    "searchPlaceholder": "Search artworks...",
+    "categories": {
+      "all": "All",
+      "illustration": "Illustration",
+      "photography": "Photography",
+      "3d-art": "3D Art",
+      "pixel-art": "Pixel Art",
+      "concept-art": "Concept Art",
+      "abstract": "Abstract"
+    }
+  },
+
+  "SearchPage": {
+    "searchResults": "Search Results",
+    "showingResultsFor": "Showing results for",
+    "noResults": "No artworks found."
   }
 }

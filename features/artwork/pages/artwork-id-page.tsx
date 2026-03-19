@@ -6,8 +6,17 @@ import Separator from "@/components/ui/separator";
 import { H1, H2, P } from "@/components/ui/typography";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 
-async function ArtworkIdPage() {
+type ArtworkIdPageProps = {
+  params: Promise<{ id: string }>;
+};
+async function ArtworkIdPage({ params }: ArtworkIdPageProps) {
+  const { id } = await params;
+  const t = await getTranslations("ArtworkIdPage");
+
+  console.log({ id });
+
   return (
     <div className="container mx-auto mt-[64px] min-h-[calc(100vh-64px)] px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -61,9 +70,20 @@ async function ArtworkIdPage() {
               </CreatorCardLongSimple.Content>
             </CreatorCardLongSimple>
 
+            {/* VARIANT OPTIONS */}
+            <div className="flex flex-col gap-2">
+              <P>{t("variant")}</P>
+
+              <div className="flex flex-wrap gap-2">
+                <ButtonBadge variant={"default"}>Square variant</ButtonBadge>
+                <ButtonBadge variant={"default"}>Gold edition</ButtonBadge>
+                <ButtonBadge variant={"default"}>Founder edition</ButtonBadge>
+              </div>
+            </div>
+
             {/* SIZE OPTIONS */}
             <div className="flex flex-col gap-2">
-              <P>Sizes</P>
+              <P>{t("size")}</P>
 
               <div className="flex flex-wrap gap-2">
                 <ButtonBadge variant={"default"}>2560 x 1440</ButtonBadge>
@@ -74,7 +94,7 @@ async function ArtworkIdPage() {
 
             {/* SIZE OPTIONS */}
             <div className="flex flex-col gap-2">
-              <P>Colors</P>
+              <P>{t("color")}</P>
 
               <div className="flex flex-wrap gap-2">
                 <ButtonBadge variant={"default"}>Red</ButtonBadge>
@@ -93,7 +113,7 @@ async function ArtworkIdPage() {
 
               <Button className="flex items-center gap-2 px-6">
                 <ShoppingCart size={18} />
-                Add to cart
+                {t("addToCart")}
               </Button>
             </div>
           </div>

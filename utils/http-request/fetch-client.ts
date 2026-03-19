@@ -48,7 +48,7 @@ export async function fetchClient<B, D, E>(
   }
 
   const fetchBodyArgs =
-    args.method == "GET"
+    args.method === "GET"
       ? {
           method: args.method,
           headers: {

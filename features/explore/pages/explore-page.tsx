@@ -5,6 +5,7 @@ import { H1, H5, P } from "@/components/ui/typography";
 import productData from "@/public/product-data.json";
 import Link from "next/link";
 import FilterableSearch from "../components/filterable-search";
+import { getTranslations } from "next-intl/server";
 
 type ExplorePage = {
   params: Promise<{ category: string }>;
@@ -12,6 +13,7 @@ type ExplorePage = {
 
 async function ExplorePage({ params }: ExplorePage) {
   const { category } = await params;
+  const t = await getTranslations("ExplorePage");
   console.log({ category });
 
   return (
@@ -19,10 +21,8 @@ async function ExplorePage({ params }: ExplorePage) {
       <div className="flex flex-col gap-6">
         {/** TITLE */}
         <div className="flex flex-col gap-1">
-          <H1>Browse Artworks</H1>
-          <P className="text-md text-foreground/50">
-            Discover digital art from talented creators
-          </P>
+          <H1>{t("browseArtworks")}</H1>
+          <P className="text-md text-foreground/50">{t("discoverDigArt")}</P>
         </div>
 
         {/** CLIENT-SIDE | SEARCH & FILTER */}

@@ -47,5 +47,36 @@
       "description": "Buat toko kamu dalam hitungan menit dan mulai menghasilkan dari karya digital.",
       "button": "Mulai gratis"
     }
+  },
+
+  "ArtworkIdPage": {
+    "variant": "Variasi",
+    "size": "Ukuran",
+    "color": "Warna",
+    "addToCart": "Tambahkan ke keranjang"
+  },
+
+  "ExplorePage": {
+    "browseArtworks": "Telusuri Artworks",
+    "discoverDigArt": "Temukan karya seni digital dari creator bertalenta"
+  },
+
+  "FilterableSearch": {
+    "searchPlaceholder": "Cari artworks...",
+    "categories": {
+      "all": "Semua",
+      "illustration": "Ilustrasi",
+      "photography": "Fotografi",
+      "3d-art": "Seni 3D",
+      "pixel-art": "Pixel Art",
+      "concept-art": "Concept Art",
+      "abstract": "Abstrak"
+    }
+  },
+
+  "SearchPage": {
+    "searchResults": "Hasil Pencarian",
+    "showingResultsFor": "Menampilkan hasil untuk",
+    "noResults": "Karya tidak ditemukan."
   }
 }

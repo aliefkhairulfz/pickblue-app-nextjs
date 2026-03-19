@@ -51,7 +51,7 @@ export async function fetchServer<B, D, E>(
 
   // ACTUAL FETCH
   const fetchBodyArgs =
-    args.method == "GET"
+    args.method === "GET"
       ? {
           method: args.method,
           headers: {
